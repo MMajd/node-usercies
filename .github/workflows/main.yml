@@ -1,0 +1,19 @@
+name: deploy-auth
+on:
+  push: 
+    branches: 
+      - master 
+    paths:
+    - 'auth/**' 
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd auth && docker build -t mmajd/auth . 
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PSWD
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PSWD: ${{ secrets.DOCKER_PSWD }}
+      - run: docker push mmajd/auth 
