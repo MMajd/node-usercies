@@ -16,9 +16,7 @@ const start = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 
   app.listen(3000, () => {});
 };
