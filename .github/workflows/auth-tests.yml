@@ -1,4 +1,4 @@
-name: Testing 
+name: auth-tests
 on: 
   pull_request
 jobs: 
