@@ -16,13 +16,13 @@ jest.mock("../nats-wrapper");
 
 process.env.STRIPE_KEY = "sk_test_c7MVBsHhjJ1dgOTfNQkoeabk00G1i7V3wz";
 
-let mongo: any;
+let mongo: MongoMemoryServer;
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfasdf";
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-  mongo = new MongoMemoryServer();
-  const mongoUri = await mongo.getUri();
+  mongo = await MongoMemoryServer.create();
+  const mongoUri = mongo.getUri();
 
   await mongoose.connect(mongoUri, {
     useNewUrlParser: true,
