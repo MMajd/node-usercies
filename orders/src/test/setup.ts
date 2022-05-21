@@ -35,7 +35,6 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-//@ts-nocheck
 //@ts-ignore
 global.signin = () => {
   // Build a JWT payload.  { id, email }
